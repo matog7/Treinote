@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Champion:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles de base personnalisés */
+body {
+  margin: 0;
+  font-family: 'Champion', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Classes utilitaires personnalisées pour Champion */
+@layer components {
+  .title-champion {
+    @apply font-champion font-bold;
+  }
+
+  .heading-champion {
+    @apply font-champion font-bold text-4xl;
+  }
+
+  .subtitle-champion {
+    @apply font-champion font-bold text-2xl;
+  }
+}
+
+/* Classes utilitaires pour Audiowide - Titres principaux */
+@layer components {
+  .title-audiowide {
+    @apply font-audiowide;
+  }
+
+  .heading-audiowide {
+    @apply font-audiowide text-6xl;
+  }
+
+  .subtitle-audiowide {
+    @apply font-audiowide text-4xl;
+  }
+}
