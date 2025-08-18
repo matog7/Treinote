@@ -31,8 +31,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     { path: '/community', label: 'Community', icon: Users },
     { path: '/events', label: 'Events', icon: Calendar },
     { path: '/coaches', label: 'Coaches', icon: GraduationCap },
-    { path: '/equipment', label: 'Equipment', icon: Shield },
-    { path: '/tournaments', label: 'Tournaments', icon: Trophy },
     { path: '/contact', label: 'Contact', icon: Mail },
     { path: '/settings', label: 'Settings', icon: Settings },
   ];
@@ -87,15 +85,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
         {/* Section utilisateur */}
         <div className='absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200'>
-          <div className='flex items-center space-x-3'>
-            <div className='w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center'>
-              <span className='text-teal-600 font-bold'>U</span>
+          <Link to='/profile' onClick={onClose}>
+            <div className='flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors'>
+              <div className='w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center'>
+                <span className='text-teal-600 font-bold'>U</span>
+              </div>
+              <div>
+                <p className='font-medium text-gray-800 font-audiowide'>User Profile</p>
+                <p className='text-sm text-gray-500'>Premium Member</p>
+              </div>
             </div>
-            <div>
-              <p className='font-medium text-gray-800 font-audiowide'>User Profile</p>
-              <p className='text-sm text-gray-500'>Premium Member</p>
-            </div>
-          </div>
+          </Link>
         </div>
       </div>
     </>

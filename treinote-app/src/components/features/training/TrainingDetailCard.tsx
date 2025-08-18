@@ -1,17 +1,6 @@
 import React from 'react';
-import { X, Calendar, Clock, Target, TrendingUp, Dumbbell, FileText, MapPin } from 'lucide-react';
-
-interface Training {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  duration: number;
-  intensity: number;
-  description?: string;
-  equipment?: string;
-  notes?: string;
-}
+import { X, Clock, Target, TrendingUp, Dumbbell, FileText, MapPin } from 'lucide-react';
+import { Training } from '../../../interfaces';
 
 interface TrainingDetailCardProps {
   training: Training;
