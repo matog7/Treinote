@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, Target, TrendingUp, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import AddTrainingModal from '../../modals/AddTrainingModal';
 import TrainingDetailCard from './TrainingDetailCard';
+import ProgressChartModal from '../../modals/ProgressChartModal';
 
 interface Training {
   id: string;
@@ -20,6 +21,8 @@ const MyTrainingDashboard: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTraining, setSelectedTraining] = useState<Training | null>(null);
   const [isDetailCardOpen, setIsDetailCardOpen] = useState(false);
+  const [isProgressModalOpen, setIsProgressModalOpen] = useState(false);
+
   const [trainings, setTrainings] = useState<Training[]>([
     {
       id: '1',
@@ -408,6 +411,32 @@ const MyTrainingDashboard: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16'>
+          {/* Courbe de progression */}
+          <div className='bg-white rounded-2xl shadow-xl p-6'>
+            <div className='flex items-center justify-between mb-6'>
+              <h2 className='text-2xl font-bold text-gray-800 font-champion'>
+                Courbe de progression
+              </h2>
+              <div className='w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center'>
+                <TrendingUp className='w-5 h-5 text-teal-600' />
+              </div>
+            </div>
+
+            <p className='text-gray-600 mb-6'>
+              Suivez l'évolution de vos performances sur vos exercices de musculation préférés
+            </p>
+
+            <button
+              onClick={() => setIsProgressModalOpen(true)}
+              className='w-full bg-gradient-to-r from-teal-600 to-teal-700 text-white py-3 px-6 rounded-lg hover:from-teal-700 hover:to-teal-800 transition-all duration-200 transform hover:scale-105 font-semibold flex items-center justify-center space-x-2'
+            >
+              <TrendingUp className='w-5 h-5' />
+              <span>Voir la courbe de progression</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Modal d'ajout d'entraînement */}
@@ -423,6 +452,14 @@ const MyTrainingDashboard: React.FC = () => {
           training={selectedTraining}
           isOpen={isDetailCardOpen}
           onClose={closeDetailCard}
+        />
+      )}
+
+      {/* Modal de progression */}
+      {isProgressModalOpen && (
+        <ProgressChartModal
+          isOpen={isProgressModalOpen}
+          onClose={() => setIsProgressModalOpen(false)}
         />
       )}
     </div>
