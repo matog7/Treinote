@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Community: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className='min-h-screen bg-white mt-16'>
       <div className='container mx-auto px-4 py-8'>
@@ -14,7 +16,10 @@ const Community: React.FC = () => {
               Rencontre des sportifs dans le coin et rejoins des événements locaux pour partager ta
               passion pour le sport.
             </p>
-            <button className='w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors'>
+            <button
+              onClick={() => navigate('/events')}
+              className='w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors'
+            >
               Trouver des événements
             </button>
           </div>
