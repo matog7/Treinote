@@ -16,13 +16,13 @@ const MyTrainingProgram: React.FC = () => {
       <div className='container mx-auto py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center'>
         <div className='lg:col-span-2'>
           <div className='bg-white rounded-lg shadow-lg p-6'>
-            <h3 className='text-xl font-bold mb-4'>My Training Program</h3>
+            <h3 className='text-xl font-bold mb-4'>Mon programme d'entrainement</h3>
             <p className='text-gray-600 mb-4'>
-              Perfect for newcomers, you can add your own training program, when you did it & what
-              you did.
+              Accessible à tous les niveaux, tu peux ajouter ton propre programme d'entrainement,
+              quand tu l'as fait et ce que tu as fait.
             </p>
             <button className='w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors'>
-              Start Training
+              Commencer l'entrainement
             </button>
           </div>
         </div>
@@ -31,7 +31,7 @@ const MyTrainingProgram: React.FC = () => {
             onClick={handleAddTraining}
             className='w-full text-black py-2 px-4 rounded-lg hover:translate-x-2 transition-all duration-300 hover:text-teal-600 flex items-center justify-center font-medium'
           >
-            Add your own training program →
+            Ajouter tes propres séances →
           </button>
         </div>
       </div>

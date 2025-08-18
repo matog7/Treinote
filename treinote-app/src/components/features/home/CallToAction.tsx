@@ -13,7 +13,7 @@ const CallToAction: React.FC = () => {
       onClick={handleClick}
       className='bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-250'
     >
-      Start training to success
+      Commencer dès maintenant
     </button>
   );
 };

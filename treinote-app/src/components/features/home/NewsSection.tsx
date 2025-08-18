@@ -4,7 +4,7 @@ import NewsCard from './NewsCard';
 const NewsSection: React.FC = () => {
   return (
     <section className='mb-8 mt-16'>
-      <h3 className='text-2xl font-bold mb-6'>Stay Updated with Tennis World</h3>
+      <h3 className='text-2xl font-bold mb-6'>Informations en temps réel</h3>
 
       <div className='space-y-4'>
         <NewsCard

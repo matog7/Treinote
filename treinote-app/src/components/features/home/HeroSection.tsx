@@ -7,8 +7,8 @@ const HeroSection: React.FC = () => {
   return (
     <section className=' text-black py-20 rounded-lg'>
       <div className='container mx-auto px-4 text-center'>
-        <h1 className='text-6xl font-bold mb-4 font-audiowide'>Push Your Limits</h1>
-        <p className='text-xl mb-8'>Ace Your Game. Master Every Swing.</p>
+        <h1 className='text-6xl font-bold mb-4 font-audiowide'>Dépasse tes limites</h1>
+        <p className='text-xl mb-8'>Pousse dans tes retranchements. Maîtrise chaque exercice.</p>
 
         <div className='flex justify-center items-center mb-8'>
           <div className='relative'>
@@ -24,12 +24,12 @@ const HeroSection: React.FC = () => {
         <CallToAction />
 
         <div className='mt-16'>
-          <h2 className='text-4xl font-bold mb-4 font-audiowide'>Train Like a Champion</h2>
+          <h2 className='text-4xl font-bold mb-4 font-audiowide'>Entraîne toi comme un champion</h2>
           <div className='flex items-center justify-center space-x-6'>
             <button className='w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300 flex items-center justify-center text-xl font-bold hover:scale-110'>
               ←
             </button>
-            <span className='text-lg font-medium'>Find Your Perfect Drill</span>
+            <span className='text-lg font-medium'>Trouve le parfait exercice</span>
             <button className='w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300 flex items-center justify-center text-xl font-bold hover:scale-110'>
               →
             </button>

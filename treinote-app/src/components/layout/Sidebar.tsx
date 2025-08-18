@@ -1,17 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  Home,
-  Target,
-  Users,
-  Calendar,
-  GraduationCap,
-  Shield,
-  Trophy,
-  Settings,
-  X,
-  Mail,
-} from 'lucide-react';
+import { Home, Target, Users, Calendar, GraduationCap, Settings, X, Mail } from 'lucide-react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -26,13 +15,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   };
 
   const menuItems = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/training', label: 'Training', icon: Target },
-    { path: '/community', label: 'Community', icon: Users },
-    { path: '/events', label: 'Events', icon: Calendar },
-    { path: '/coaches', label: 'Coaches', icon: GraduationCap },
+    { path: '/', label: 'Accueil', icon: Home },
+    { path: '/training', label: 'Entrainement', icon: Target },
+    { path: '/community', label: 'Communauté', icon: Users },
+    { path: '/events', label: 'Événements', icon: Calendar },
+    { path: '/coaches', label: 'Coachs', icon: GraduationCap },
     { path: '/contact', label: 'Contact', icon: Mail },
-    { path: '/settings', label: 'Settings', icon: Settings },
+    { path: '/settings', label: 'Paramètres', icon: Settings },
   ];
 
   return (
@@ -88,11 +77,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           <Link to='/profile' onClick={onClose}>
             <div className='flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors'>
               <div className='w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center'>
-                <span className='text-teal-600 font-bold'>U</span>
+                <span className='text-teal-600 font-bold'>P</span>
               </div>
               <div>
-                <p className='font-medium text-gray-800 font-audiowide'>User Profile</p>
-                <p className='text-sm text-gray-500'>Premium Member</p>
+                <p className='font-medium text-gray-800 font-audiowide'>Profil utilisateur</p>
+                <p className='text-sm text-gray-500'>Utilisateur premium</p>
               </div>
             </div>
           </Link>

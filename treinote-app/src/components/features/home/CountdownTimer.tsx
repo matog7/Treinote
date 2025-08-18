@@ -51,7 +51,7 @@ const CountdownTimer: React.FC = () => {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
     >
-      <TimeUnit value={timeLeft.days} label='d' />
+      <TimeUnit value={timeLeft.days} label='j' />
       <TimeUnit value={timeLeft.hours} label='h' />
       <TimeUnit value={timeLeft.minutes} label='m' />
       <TimeUnit value={timeLeft.seconds} label='s' />

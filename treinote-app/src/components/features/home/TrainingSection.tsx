@@ -4,7 +4,7 @@ const TrainingSection: React.FC = () => {
   return (
     <section className='mb-12'>
       <div className='bg-white rounded-lg shadow-lg p-6'>
-        <h3 className='text-2xl font-bold mb-4'>Training Programs</h3>
+        <h3 className='text-2xl font-bold mb-4'>Programmes d'entrainement</h3>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           <div className='text-center'>
             <img
@@ -12,8 +12,8 @@ const TrainingSection: React.FC = () => {
               alt='Training 1'
               className='w-full h-48 object-cover rounded-lg mb-3'
             />
-            <h4 className='font-semibold mb-2'>Beginner Level</h4>
-            <p className='text-gray-600'>Perfect for newcomers to tennis</p>
+            <h4 className='font-semibold mb-2'>Niveau Débutant</h4>
+            <p className='text-gray-600'>Parfait pour les débutants</p>
           </div>
           <div className='text-center'>
             <img
@@ -21,8 +21,8 @@ const TrainingSection: React.FC = () => {
               alt='Training 2'
               className='w-full h-48 object-cover rounded-lg mb-3'
             />
-            <h4 className='font-semibold mb-2'>Advanced Level</h4>
-            <p className='text-gray-600'>For experienced players</p>
+            <h4 className='font-semibold mb-2'>Niveau Avancé</h4>
+            <p className='text-gray-600'>Pour les joueurs expérimentés</p>
           </div>
         </div>
       </div>

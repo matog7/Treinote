@@ -4,9 +4,10 @@ import TextButton from '../../layout/TextButton';
 const CommunitySection: React.FC = () => {
   return (
     <section className='mb-8'>
-      <h3 className='text-2xl font-bold mb-4'>Join Our Community</h3>
+      <h3 className='text-2xl font-bold mb-4'>Rejoins notre communauté</h3>
       <p className='text-gray-600 mb-6'>
-        Join thousands of players who trust us to sharpen their game.
+        Rejoins des milliers de sportifs en herbe qui nous font confiance pour affuter leur
+        physique.
       </p>
 
       <div className='grid grid-cols-2 gap-3'>
@@ -17,11 +18,13 @@ const CommunitySection: React.FC = () => {
               alt={`Tip ${i}`}
               className='w-full h-20 object-cover rounded-lg mb-2'
             />
-            <p className='text-sm font-medium'>5 Backhand Sharpen Your Game</p>
+            <p className='text-sm font-medium'>
+              {i % 2 === 0 ? '5 exos pour affuter ton dos' : 'La routine abdos à adopter'}
+            </p>
           </div>
         ))}
       </div>
-      <TextButton to='/community'>See more</TextButton>
+      <TextButton to='/community'>Voir plus</TextButton>
     </section>
   );
 };

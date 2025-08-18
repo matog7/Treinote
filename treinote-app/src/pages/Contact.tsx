@@ -259,7 +259,7 @@ const Contact: React.FC = () => {
 
           {/* CTA de retour */}
           <div className='flex justify-center mt-16'>
-            <LeftButton to='/'>← Back to home</LeftButton>
+            <LeftButton to='/'>← Retour à l'accueil</LeftButton>
           </div>
         </div>
       </div>

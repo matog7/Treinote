@@ -52,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
                   isActive('/') ? 'bg-teal-700' : ''
                 }`}
               ></span>
-              Home
+              Accueil
             </Link>
             <Link
               to='/training'
@@ -67,7 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
                   isActive('/training') ? 'bg-teal-700' : ''
                 }`}
               ></span>
-              Training
+              Entrainement
             </Link>
             <Link
               to='/community'
@@ -82,7 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
                   isActive('/community') ? 'bg-teal-700' : ''
                 }`}
               ></span>
-              Community
+              Communauté
             </Link>
           </div>
         </div>
@@ -103,7 +103,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
           <div className='relative'>
             <input
               type='text'
-              placeholder='Search'
+              placeholder='Rechercher'
               className='w-64 px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white'
             />
             <button className='absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors'>
@@ -128,7 +128,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
             onClick={() => navigate('/contact')}
             className='bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors'
           >
-            Contact Us
+            Contactez-nous
           </button>
         </div>
       </div>
