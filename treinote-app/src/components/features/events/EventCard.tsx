@@ -1,28 +1,6 @@
 import React from 'react';
 import { Calendar, MapPin, Users, Clock, Star, Tally1, Tally2, Tally3 } from 'lucide-react';
-
-interface Event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  category: string;
-  maxParticipants: number;
-  currentParticipants: number;
-  price: number;
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
-  organizer: {
-    name: string;
-    avatar?: string;
-    rating: number;
-  };
-  tags: string[];
-  image?: string;
-  status: 'upcoming' | 'ongoing' | 'completed';
-}
-
+import { Event } from '@/interfaces/event';
 interface EventCardProps {
   event: Event;
   onJoin?: (eventId: string) => void;
@@ -30,19 +8,6 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event, onJoin, onViewDetails }) => {
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'beginner':
-        return 'from-green-500 to-green-600';
-      case 'intermediate':
-        return 'from-yellow-500 to-yellow-600';
-      case 'advanced':
-        return 'from-red-500 to-red-600';
-      default:
-        return 'from-gray-500 to-gray-600';
-    }
-  };
-
   const getDifficultyLabel = (difficulty: string) => {
     switch (difficulty) {
       case 'beginner':
@@ -110,7 +75,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, onJoin, onViewDetails }) =
         <div
           className={`absolute top-4 left-4 rounded-full px-1 py-1 text-xs font-medium text-white`}
         >
-          {/* <span className='text-sm'>Difficulté : </span> */}
           {getDifficultyLabel(event.difficulty)}
         </div>
       </div>

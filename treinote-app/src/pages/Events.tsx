@@ -1,30 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Plus, Calendar, Users, Check, Tally1, Tally2, Tally3 } from 'lucide-react';
-import EventSearch, { EventFilters } from '../components/features/events/EventSearch';
-import EventCard from '../components/features/events/EventCard';
-
-// Interface pour les événements
-interface Event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  category: string;
-  maxParticipants: number;
-  currentParticipants: number;
-  price: number;
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
-  organizer: {
-    name: string;
-    avatar?: string;
-    rating: number;
-  };
-  tags: string[];
-  image?: string;
-  status: 'upcoming' | 'ongoing' | 'completed';
-}
+import EventSearch from '@/components/features/events/EventSearch';
+import EventCard from '@/components/features/events/EventCard';
+import { EventFilters, Event } from '@/interfaces/event';
 
 const Events: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');

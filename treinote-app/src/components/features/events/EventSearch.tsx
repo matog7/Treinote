@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { Search, Filter, MapPin, Calendar, Target, X, Euro } from 'lucide-react';
+import { EventFilters } from '@/interfaces/event';
+import { difficulties, statuses, priceRanges, dateRanges } from '@/utils/consts';
 
 interface EventSearchProps {
   onSearch: (query: string) => void;
   onFilterChange: (filters: EventFilters) => void;
   onClearFilters: () => void;
-}
-
-export interface EventFilters {
-  category: string;
-  difficulty: string;
-  status: string;
-  priceRange: string;
-  dateRange: string;
-  location: string;
 }
 
 const EventSearch: React.FC<EventSearchProps> = ({ onSearch, onFilterChange, onClearFilters }) => {
@@ -38,14 +31,6 @@ const EventSearch: React.FC<EventSearchProps> = ({ onSearch, onFilterChange, onC
     'Technique',
     'Tournoi',
   ];
-
-  const difficulties = ['Tous niveaux', 'Débutant', 'Intermédiaire', 'Avancé'];
-
-  const statuses = ['Tous', 'À venir', 'En cours', 'Terminé'];
-
-  const priceRanges = ['Tous les prix', 'Gratuit', '0-20€', '20-50€', '50€+'];
-
-  const dateRanges = ['Toutes les dates', "Aujourd'hui", 'Cette semaine', 'Ce mois', 'Dans 3 mois'];
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

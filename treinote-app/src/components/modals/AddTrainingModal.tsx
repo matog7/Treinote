@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Calendar, Clock, Target, Dumbbell, FileText, Settings } from 'lucide-react';
-import { Training } from '../../interfaces';
+import { Training } from '@/interfaces/training';
 
 interface AddTrainingModalProps {
   isModalOpen: boolean;
