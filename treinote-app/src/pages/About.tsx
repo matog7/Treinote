@@ -6,8 +6,6 @@ import {
   Trophy,
   Smartphone,
   Monitor,
-  Download,
-  Share2,
   Home,
   CheckCircle,
   ArrowRight,
