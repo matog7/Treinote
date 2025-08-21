@@ -6,7 +6,7 @@ import RightButton from '../../layout/RightButton';
 const EventSection: React.FC = () => {
   return (
     <section className='mb-12'>
-      <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
+      <div className='rounded-lg shadow-lg overflow-hidden'>
         <div className='relative'>
           <img src={eventImage} alt='Training session' className='w-full h-84 object-cover' />
           <div className='absolute inset-0 bg-black/50 flex items-center justify-center'>

@@ -12,11 +12,15 @@ const Home: React.FC = () => {
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
           <div className='lg:col-span-2'>
             <EventSection />
-            <TrainingSection />
-            <CommunitySection />
           </div>
           <div className='lg:col-span-2'>
             <HeroSection />
+          </div>
+        </div>
+        <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
+          <div className='lg:col-span-2'>
+            <TrainingSection />
+            <CommunitySection />
             <NewsSection />
           </div>
         </div>

@@ -5,23 +5,28 @@ import player from '../../../assets/coach.jpg';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className=' text-black py-20 rounded-lg'>
+    <section className=' text-black py-20 rounded-lg mb-12'>
       <div className='container mx-auto px-4 text-center'>
-        <h1 className='text-6xl font-bold mb-4 font-audiowide'>Dépasse tes limites</h1>
-        <p className='text-xl mb-8'>Pousse dans tes retranchements. Maîtrise chaque exercice.</p>
+        <div className='flex flex-row justify-between items-center mb-8 gap-12'>
+          <h1 className='text-6xl font-bold mb-4 font-audiowide text-left'>Dépasse tes limites</h1>
+          <p className='text-medium mb-8 text-left w-1/2'>
+            Pousse dans tes retranchements. Maîtrise chaque exercice.
+          </p>
+        </div>
 
-        <div className='flex justify-center items-center mb-8'>
-          <div className='relative'>
+        <div className='flex flex-row justify-center items-center mb-8 gap-8'>
+          <div className='flex flex-col items-center gap-4'>
             <img
               src={player}
               alt='Tennis Player'
               className='w-80 h-96 object-cover rounded-lg shadow-2xl'
             />
+            <CallToAction />
+          </div>
+          <div className='flex flex-col items-center'>
             <SocialLinks />
           </div>
         </div>
-
-        <CallToAction />
 
         <div className='mt-16'>
           <h2 className='text-4xl font-bold mb-4 font-audiowide'>Entraîne toi comme un champion</h2>

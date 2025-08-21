@@ -1,6 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Target, Users, Calendar, GraduationCap, Settings, X, Mail } from 'lucide-react';
+import {
+  Home,
+  Target,
+  Users,
+  Calendar,
+  GraduationCap,
+  Settings,
+  X,
+  Mail,
+  Info,
+} from 'lucide-react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -21,6 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     { path: '/events', label: 'Événements', icon: Calendar },
     { path: '/coaches', label: 'Coachs', icon: GraduationCap },
     { path: '/contact', label: 'Contact', icon: Mail },
+    { path: '/about', label: 'À propos', icon: Info },
     { path: '/settings', label: 'Paramètres', icon: Settings },
   ];
 

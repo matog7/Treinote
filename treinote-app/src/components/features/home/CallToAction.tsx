@@ -11,7 +11,7 @@ const CallToAction: React.FC = () => {
   return (
     <button
       onClick={handleClick}
-      className='bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-250'
+      className='bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-250 w-80'
     >
       Commencer dès maintenant
     </button>
