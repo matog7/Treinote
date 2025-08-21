@@ -11,7 +11,7 @@ const HeroSection: React.FC = () => {
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-2 md:mb-4 font-audiowide text-center md:text-left">
             Dépasse tes limites
           </h1>
-          <p className="text-base md:text-sm mb-6 md:mb-8 text-center md:text-left w-full md:w-1/2">
+          <p className="text-gray-700 text-base md:text-sm mb-6 md:mb-8 text-center md:text-left w-full md:w-1/2">
             Pousse dans tes retranchements. Maîtrise chaque exercice.
           </p>
         </div>
@@ -38,7 +38,7 @@ const HeroSection: React.FC = () => {
             <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:border-2 hover:border-teal-300/60 hover:text-teal-500 transition-all duration-150 flex items-center justify-center text-lg md:text-xl font-bold hover:scale-110">
               ←
             </button>
-            <span className="text-base md:text-lg font-medium">
+            <span className="text-gray-700 md:text-lg font-medium">
               Trouve le parfait exercice
             </span>
             <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:border-2 hover:border-teal-300/60 hover:text-teal-500 transition-all duration-150 flex items-center justify-center text-lg md:text-xl font-bold hover:scale-110">

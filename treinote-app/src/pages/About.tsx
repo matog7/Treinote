@@ -84,15 +84,11 @@ const About: React.FC = () => {
       icon: <Home className="w-6 h-6 text-teal-200" />,
       text: "Accès rapide à votre application",
     },
-    {
-      icon: <CheckCircle className="w-6 h-6 text-teal-200" />,
-      text: "Expérience native sur votre appareil",
-    },
   ];
 
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 mt-16">
-      <div className="mx-auto">
+      <div className="container mx-auto px-4 py-8">
         {/* En-tête de la page */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 font-audiowide mb-6">
@@ -197,9 +193,9 @@ const About: React.FC = () => {
               <h3 className="text-2xl font-bold mb-4 text-center">
                 Vos Avantages
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center space-x-1.5">
+                  <div key={index} className="flex items-center space-x-3">
                     {benefit.icon}
                     <span className="text-teal-50">{benefit.text}</span>
                   </div>

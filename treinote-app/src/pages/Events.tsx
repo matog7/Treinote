@@ -12,6 +12,7 @@ import EventSearch from "@/components/features/events/EventSearch";
 import EventCard from "@/components/features/events/EventCard";
 import EventDetailModal from "@/components/features/events/EventDetailModal";
 import { EventFilters, Event } from "@/interfaces/event";
+import tennisCourt from "@/assets/tennis-court.png";
 
 const Events: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -125,6 +126,7 @@ const Events: React.FC = () => {
       },
       tags: ["Championnat", "Finale", "Interclubs"],
       status: "completed",
+      image: tennisCourt,
     },
     {
       id: "6",
