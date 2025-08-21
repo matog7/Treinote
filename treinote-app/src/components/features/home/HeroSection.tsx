@@ -35,13 +35,13 @@ const HeroSection: React.FC = () => {
             Entraîne toi comme un champion
           </h2>
           <div className="flex items-center justify-center space-x-6">
-            <button className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300 flex items-center justify-center text-xl font-bold hover:scale-110">
+            <button className="w-12 h-12 rounded-full bg-white/20 hover:bg-teal-100/60 hover:text-teal-500 transition-all duration-300 flex items-center justify-center text-xl font-bold hover:scale-110">
               ←
             </button>
             <span className="text-lg font-medium">
               Trouve le parfait exercice
             </span>
-            <button className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300 flex items-center justify-center text-xl font-bold hover:scale-110">
+            <button className="w-12 h-12 rounded-full bg-white/20 hover:bg-teal-100/60 hover:text-teal-500 transition-all duration-300 flex items-center justify-center text-xl font-bold hover:scale-110">
               →
             </button>
           </div>
