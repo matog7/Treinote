@@ -1,48 +1,61 @@
-import React from 'react';
-import CountdownTimer from './CountdownTimer';
-import eventImage from '../../../assets/2497.jpg';
-import RightButton from '../../layout/RightButton';
+import React from "react";
+import CountdownTimer from "./CountdownTimer";
+import eventImage from "../../../assets/2497.jpg";
 
 const EventSection: React.FC = () => {
   return (
-    <section className='mb-12'>
-      <div className='rounded-lg shadow-lg overflow-hidden'>
-        <div className='relative'>
-          <img src={eventImage} alt='Training session' className='w-full h-84 object-cover' />
-          <div className='absolute inset-0 bg-black/50 flex items-center justify-center'>
-            <div className='text-center text-white p-6 bg-black/30 rounded-lg backdrop-blur-sm'>
-              <h3 className='text-2xl font-bold mb-3 title-audiowide'>
-                Débloque ton plein potentiel
-              </h3>
-              <p className='text-lg max-w-md'>
-                Conseils communautaires, recommandations d'exercices, et entraînement au niveau pro
-              </p>
-            </div>
+    <section className="mb-12 h-full">
+      <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+        <img
+          src={eventImage}
+          alt="Séance d'entraînement"
+          className="w-full h-[720px] md:h-[760px] object-cover"
+        />
+
+        {/* Badge texte en haut à droite (style carte blanche) */}
+        <div className="absolute top-4 right-4 max-w-xs">
+          <div className="bg-white/80 text-gray-900 rounded-2xl p-4 shadow-md backdrop-blur">
+            <h3 className="text-sm font-semibold font-audiowide mb-1">
+              Débloque ton plein potentiel
+            </h3>
+            <p className="text-xs text-gray-600">
+              Conseils d'experts, recommandations de matériel et entraînement de
+              niveau pro.
+            </p>
           </div>
         </div>
 
-        <div className='p-6'>
-          <h4 className='text-xl font-semibold mb-4'>Rejoins nous</h4>
-          <div className='flex items-center space-x-4 mb-4'>
-            <span className='text-gray-600 flex items-center'>📍 Larmor-Plage</span>
-            <span className='text-gray-600 flex items-center'>📅 1er Septembre 2025</span>
-          </div>
-          <div className='flex items-center justify-between'>
-            <div className='flex items-center space-x-2'>
-              <span className='text-sm text-gray-500'>Inscription avant:</span>
-              <CountdownTimer />
+        {/* Panneau blanc arrondi superposé en bas (infos + timer) */}
+        <div className="absolute left-4 right-4 bottom-4">
+          <div className="bg-white/80 rounded-2xl shadow-xl p-4 sm:p-5 backdrop-blur">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h4 className="text-lg font-semibold text-black mb-1">
+                  Rejoins-nous
+                </h4>
+                <div className="flex flex-col text-left text-sm">
+                  <span className="text-black/60">Larmor-Plage</span>
+                  <span className="text-black/60">1er Septembre 2025</span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <span className="text-sm text-black/60 text-left whitespace-nowrap">
+                  Fin des inscriptions :
+                </span>
+                <CountdownTimer />
+              </div>
             </div>
-            <RightButton to='/events'>→</RightButton>
           </div>
         </div>
       </div>
 
-      <div className='mt-6'>
-        <span className='inline-block bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium mb-2'>
+      <div className="mt-8">
+        <span className="inline-block bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium mb-2">
           Objectif
         </span>
-        <p className='text-gray-700'>
-          Maîtrise tes gestes, perfectionne tes mouvements, et domine avec des exercices experts.
+        <p className="text-gray-700">
+          Maîtrise tes gestes, perfectionne tes mouvements, et domine avec des
+          exercices experts.
         </p>
       </div>
     </section>
