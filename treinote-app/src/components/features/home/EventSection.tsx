@@ -2,6 +2,7 @@ import React from "react";
 import CountdownTimer from "./CountdownTimer";
 import eventImage from "../../../assets/muscu.png";
 import { MapPin, Calendar1 } from "lucide-react";
+import RightButton from "@/components/layout/RightButton";
 
 const EventSection: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const EventSection: React.FC = () => {
 
         {/* Badge texte en haut à droite (style carte blanche) */}
         <div className="absolute top-4 right-4 max-w-xs">
-          <div className="bg-white text-gray-900 rounded-2xl p-4 shadow-md backdrop-blur">
+          <div className="bg-white/90 text-gray-900 rounded-2xl p-4 shadow-md">
             <h3 className="text-md font-semibold font-audiowide mb-1">
               Débloque ton plein potentiel
             </h3>
@@ -28,30 +29,31 @@ const EventSection: React.FC = () => {
 
         {/* Panneau blanc arrondi superposé en bas (infos + timer) */}
         <div className="absolute left-4 right-4 bottom-4">
-          <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-5 backdrop-blur">
-            <div className="flex items-start justify-between gap-4">
+          <div className="bg-white/90 rounded-2xl shadow-xl p-4 sm:p-5">
+            <div className="flex items-start justify-between gap-4 items-center">
               <div>
-                <h4 className="text-lg font-semibold text-black mb-1">
+                <h4 className="text-md font-semibold text-black mb-1">
                   Rejoins-nous
                 </h4>
-                <div className="flex flex-col text-left text-sm gap-2">
+                <div className="flex flex-col text-left text-xs gap-1">
                   <div className="flex flex-row space-x-1 text-black/60">
-                    <MapPin className="w-5 h-5" />
+                    <MapPin className="w-4 h-4" />
                     <span>Larmor-Plage</span>
                   </div>
 
                   <div className="flex flex-row space-x-1 text-black/60">
-                    <Calendar1 className="w-5 h-5" />
+                    <Calendar1 className="w-4 h-4" />
                     <span>1er Septembre 2025</span>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col gap-2">
-                <span className="text-sm text-black/60 text-left whitespace-nowrap">
+                <span className="text-xs text-black/60 text-left whitespace-nowrap">
                   Fin des inscriptions :
                 </span>
                 <CountdownTimer />
               </div>
+              <RightButton to="/events">→</RightButton>
             </div>
           </div>
         </div>

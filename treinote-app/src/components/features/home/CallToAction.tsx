@@ -1,17 +1,17 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const CallToAction: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
     <button
       onClick={handleClick}
-      className='bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-250 w-80'
+      className="bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-lg text-sm transition-all duration-250 w-80"
     >
       Commencer dès maintenant
     </button>

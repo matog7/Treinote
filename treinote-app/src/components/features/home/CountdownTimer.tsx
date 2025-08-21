@@ -40,7 +40,7 @@ const CountdownTimer: React.FC = () => {
   }, []);
 
   const TimeUnit = ({ value, label }: { value: number; label: string }) => (
-    <span className='bg-gradient-to-br from-red-500 to-red-600 text-white px-3 py-2 rounded-lg text-sm font-mono font-bold shadow-lg transform hover:scale-105 transition-all duration-300'>
+    <span className='bg-gradient-to-br from-red-500 to-red-600 text-white px-3 py-2 rounded-lg text-xs font-mono font-bold shadow-lg transform hover:scale-105 transition-all duration-300'>
       {value.toString().padStart(2, '0')} {label}
     </span>
   );
