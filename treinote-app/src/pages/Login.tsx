@@ -40,7 +40,9 @@ const Login: React.FC = () => {
             <h3 className="text-white text-2xl font-bold font-audiowide">
               Treinote
             </h3>
-            <p className="text-white/90 text-sm">Start Serving Success</p>
+            <p className="text-white/90 text-sm">
+              Suivre, progresser, évoluer.
+            </p>
           </div>
         </div>
 
@@ -54,7 +56,7 @@ const Login: React.FC = () => {
             >
               Treinote
             </Link>
-            <h2 className="mt-6 text-3xl font-bold text-gray-900 font-champion">
+            <h2 className="mt-6 text-2xl font-bold text-gray-900 font-champion">
               L’entraînement qui laisse une trace.
             </h2>
             <p className="mt-2 text-sm text-gray-600">
