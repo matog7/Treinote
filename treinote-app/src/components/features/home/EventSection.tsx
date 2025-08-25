@@ -32,7 +32,7 @@ const EventSection: React.FC = () => {
           <div className="bg-white/90 rounded-2xl shadow-xl p-4 sm:p-5">
             <div className="flex items-start justify-between gap-4 items-center">
               <div>
-                <h4 className="text-md font-semibold text-black mb-1">
+                <h4 className="text-md font-semibold font-audiowide text-black mb-2">
                   Rejoins-nous
                 </h4>
                 <div className="flex flex-col text-left text-xs gap-1">

@@ -1,0 +1,10 @@
+export { default as Home } from "./Home";
+export { default as Training } from "./Training";
+export { default as Community } from "./Community";
+export { default as Events } from "./Events";
+export { default as About } from "./About";
+export { default as Login } from "./Login";
+export { default as Contact } from "./Contact";
+export { default as Profile } from "./Profile";
+export { default as Settings } from "./Settings";
+export { default as Coach } from "./Coach";

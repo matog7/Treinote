@@ -95,8 +95,7 @@ const About: React.FC = () => {
             À Propos de Treinote
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Votre compagnon de tennis intelligent pour progresser, vous
-            connecter et exceller sur le court
+            Suivre, progresser, performer.
           </p>
         </div>
 
@@ -104,7 +103,7 @@ const About: React.FC = () => {
         <div className="flex flex-col gap-8">
           <div className="bg-white rounded-3xl shadow-xl p-8 mb-12">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-800 font-champion mb-4">
+              <h2 className="text-3xl font-bold font-audiowide text-gray-800 mb-4">
                 Pourquoi Treinote ?
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
