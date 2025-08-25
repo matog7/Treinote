@@ -2,6 +2,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "@/lib/api";
 
+const initialState = {
+  events: [] as Event[],
+  current: null as any,
+  status: "idle" as "idle" | "loading" | "succeeded" | "failed",
+};
+
 export const fetchEvents = createAsyncThunk(
   "events/fetch",
   async (q?: Record<string, string>) => {
@@ -19,11 +25,7 @@ export const fetchEventById = createAsyncThunk(
 
 const slice = createSlice({
   name: "events",
-  initialState: {
-    items: [] as any[],
-    current: null as any,
-    status: "idle" as "idle" | "loading" | "succeeded" | "failed",
-  },
+  initialState: initialState,
   reducers: {},
   extraReducers: (b) => {
     b.addCase(fetchEvents.pending, (s) => {
@@ -31,7 +33,7 @@ const slice = createSlice({
     })
       .addCase(fetchEvents.fulfilled, (s, a) => {
         s.status = "succeeded";
-        s.items = a.payload;
+        s.events = a.payload;
       })
       .addCase(fetchEvents.rejected, (s) => {
         s.status = "failed";
