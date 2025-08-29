@@ -2,17 +2,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "@/lib/api";
 
-const initialState = {
-  user: {} as any,
-  status: "idle" as "idle" | "loading" | "succeeded" | "failed",
+interface AuthState {
+  user: any | null;
+  status: "idle" | "loading" | "succeeded" | "failed";
+}
+const initialState: AuthState = {
+  user: {},
+  status: "idle",
 };
 
 export const login = createAsyncThunk(
   "auth/login",
   async (payload: { email: string; password: string }) => {
     const { data } = await api.post("/auth/login", payload);
-    api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
-    return data.user;
+    // api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
+    return data;
   }
 );
 

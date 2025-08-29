@@ -1,10 +1,12 @@
 // src/store/index.ts
-import { configureStore } from '@reduxjs/toolkit';
-import eventsReducer from './slices/eventSlice';
-import authReducer from './slices/authSlice';
+import { persistStore } from "redux-persist";
+import store from "./configureStore"; // Assurez-vous que votre store est exporté par défaut depuis configureStore
 
-export const store = configureStore({
-  reducer: { events: eventsReducer, auth: authReducer },
-});
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+const persistor = persistStore(store);
+
+const getPersistor = () => persistor;
+const getStore = () => store; // Retourne l'instance du store
+const getState = () => store.getState(); // Récupère l'état actuel du store
+const purgeStoreState = () => persistor.purge(); // Purge l'état persisté
+
+export { getStore, getState, getPersistor, purgeStoreState };

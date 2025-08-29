@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import eventImage from "@/assets/muscu.png";
 import { FaGoogle } from "react-icons/fa";
 import { Facebook } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "@/store/slices/authSlice";
+import type { RootState, AppDispatch } from "@/store/configureStore";
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,10 +14,17 @@ const Login: React.FC = () => {
     rememberMe: false,
   });
 
+  const dispatch = useDispatch<AppDispatch>();
+  const authStatus = useSelector((s: RootState) => s.auth.status);
+  const navigate = useNavigate();
+  const isLoading = authStatus === "loading";
+  const isFailed = authStatus === "failed";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Logique de connexion à implémenter
-    console.log("Login attempt:", formData);
+    dispatch(login({ email: formData.email, password: formData.password }))
+      .unwrap()
+      .then(() => navigate("/"));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -139,24 +149,52 @@ const Login: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200 transform hover:scale-105"
+                disabled={isLoading}
+                className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200 ${
+                  isLoading
+                    ? "opacity-70 cursor-not-allowed"
+                    : "transform hover:scale-105"
+                }`}
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <svg
-                    className="h-5 w-5 text-teal-500 group-hover:text-teal-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                  {isLoading ? (
+                    <svg
+                      className="animate-spin h-5 w-5 text-teal-200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      ></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      className="h-5 w-5 text-teal-500 group-hover:text-teal-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  )}
                 </span>
-                Se connecter
+                {isLoading ? "Connexion..." : "Se connecter"}
               </button>
             </div>
 
@@ -172,6 +210,12 @@ const Login: React.FC = () => {
               </p>
             </div>
           </form>
+
+          {isFailed && (
+            <div className="mt-4 text-sm text-red-600 text-center">
+              Identifiants invalides ou erreur serveur.
+            </div>
+          )}
 
           {/* Séparateur */}
           <div className="relative mt-8">
