@@ -15,7 +15,7 @@ import {
 
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
-import { authReducer, eventsReducer } from "@/store/slices";
+import { authReducer, eventsReducer, trainingReducer } from "@/store/slices";
 
 const persistConfig = {
   key: "treinote",
@@ -25,6 +25,7 @@ export const resetAllSlices = createAction("resetAllSlices");
 const combinedReducers = combineReducers({
   auth: authReducer,
   events: eventsReducer,
+  training: trainingReducer,
 });
 
 const rootReducer = (

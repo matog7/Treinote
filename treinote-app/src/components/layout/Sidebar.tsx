@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Home,
   Target,
@@ -10,9 +10,11 @@ import {
   X,
   Mail,
   Info,
+  UserRound,
 } from "lucide-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/configureStore";
+import { logoutLocal } from "@/store/slices";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -21,6 +23,8 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((s: RootState) => s.auth.user);
 
   const isActive = (path: string) => {
@@ -97,11 +101,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         </nav>
 
         {/* Section utilisateur */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2">
           <Link to="/profile" onClick={onClose}>
             <div className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
               <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-                <span className="text-teal-600 font-bold">P</span>
+                <span className="text-teal-600 font-bold">
+                  {!user.id ? (
+                    <UserRound className="w-5 h-5" />
+                  ) : (
+                    user.pseudo.charAt(0).toUpperCase()
+                  )}
+                </span>
               </div>
               <div>
                 <p className="font-medium text-gray-800 font-audiowide">
@@ -111,6 +121,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
           </Link>
+          {user.id ? (
+            <button
+              onClick={() => {
+                dispatch(logoutLocal());
+                onClose();
+                navigate("/");
+              }}
+              className="w-full px-4 py-2 border border-transparent text-base font-medium rounded-lg text-teal-700 hover:translate-y-[-5px] hover:text-red-600 hover:bg-red-100/70 transition-all duration-300'"
+            >
+              Se déconnecter
+            </button>
+          ) : null}
         </div>
       </div>
     </>

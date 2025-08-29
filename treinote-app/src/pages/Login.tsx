@@ -25,7 +25,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     dispatch(login({ email: formData.email, password: formData.password }))
       .unwrap()
-      .then(() => navigate("/"));
+      .then(() => navigate("/my-training"));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -215,6 +215,11 @@ const Login: React.FC = () => {
                 {isLoading ? "Connexion..." : "Se connecter"}
               </motion.button>
             </div>
+            {isFailed && (
+              <div className="mt-4 text-sm text-red-600 text-center">
+                Les identifiants saisis sont invalides.
+              </div>
+            )}
 
             <div className="text-center">
               <p className="text-sm text-gray-600">
@@ -228,12 +233,6 @@ const Login: React.FC = () => {
               </p>
             </div>
           </form>
-
-          {isFailed && (
-            <div className="mt-4 text-sm text-red-600 text-center">
-              Identifiants invalides ou erreur serveur.
-            </div>
-          )}
 
           {/* Séparateur */}
           <div className="relative mt-8">

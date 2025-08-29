@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Calendar,
   Clock,
@@ -16,8 +16,13 @@ import ProgressChart from "./ProgressChart";
 import { Training } from "../../../interfaces";
 import before from "../../../assets/before.png";
 import TextButton from "@/components/layout/TextButton";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/store/configureStore";
+import { fetchTrainingsByUser } from "@/store/slices/trainingSlice";
 
 const MyTrainingDashboard: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((s: RootState) => s.auth.user);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTraining, setSelectedTraining] = useState<Training | null>(
@@ -25,41 +30,16 @@ const MyTrainingDashboard: React.FC = () => {
   );
   const [isDetailCardOpen, setIsDetailCardOpen] = useState(false);
 
-  const [trainings, setTrainings] = useState<Training[]>([
-    {
-      id: "1",
-      title: "Session technique service",
-      date: "2025-08-12",
-      time: "09:00",
-      duration: 90,
-      intensity: 7,
-      description: "Travail sur la technique de service",
-      equipment: "Raquette, balles",
-      notes: "Bien progressé sur le slice",
-    },
-    {
-      id: "2",
-      title: "Match d'entraînement",
-      date: "2025-08-10",
-      time: "14:00",
-      duration: 120,
-      intensity: 8,
-      description: "Match contre un partenaire",
-      equipment: "Raquette, balles, filet",
-      notes: "Gagné 6-4, 7-5",
-    },
-    {
-      id: "3",
-      title: "Cardio tennis",
-      date: "2025-07-25",
-      time: "16:00",
-      duration: 60,
-      intensity: 9,
-      description: "Entraînement cardio intensif",
-      equipment: "Raquette, balles, chronomètre",
-      notes: "Très fatiguant mais efficace",
-    },
-  ]);
+  const [trainings, setTrainings] = useState<Training[]>([]);
+
+  useEffect(() => {
+    if (user && user.id) {
+      dispatch(fetchTrainingsByUser(Number(user.id)))
+        .unwrap()
+        .then((data) => setTrainings(data))
+        .catch(() => {});
+    }
+  }, [dispatch, user]);
 
   // Générer les jours du mois
   const getDaysInMonth = (date: Date) => {
@@ -173,6 +153,9 @@ const MyTrainingDashboard: React.FC = () => {
               <h1 className="text-4xl font-bold text-gray-900 font-audiowide mb-2">
                 Mon Dashboard d'Entraînement
               </h1>
+              <p className="text-lg text-gray-600 font-semibold mt-4">
+                Bienvenue {user.pseudo}
+              </p>
               <p className="text-lg text-gray-600">
                 Suivez vos progrès et planifiez vos sessions
               </p>
