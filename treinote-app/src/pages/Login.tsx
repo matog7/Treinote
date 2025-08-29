@@ -6,6 +6,7 @@ import { Facebook } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/store/slices/authSlice";
 import type { RootState, AppDispatch } from "@/store/configureStore";
+import { motion } from "framer-motion";
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,9 +38,19 @@ const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 rounded-xl overflow-hidden shadow-2xl bg-white">
+      <motion.div
+        className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 rounded-xl overflow-hidden shadow-2xl bg-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         {/* Colonne gauche: image de fond + gradient */}
-        <div className="relative h-48 md:h-auto">
+        <motion.div
+          className="relative h-48 md:h-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        >
           <img
             src={eventImage}
             alt="Séance d'entraînement"
@@ -54,10 +65,15 @@ const Login: React.FC = () => {
               Suivre, progresser, évoluer.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Colonne droite: contenu et formulaire */}
-        <div className="p-8 sm:p-12">
+        <motion.div
+          className="p-8 sm:p-12"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+        >
           {/* Header */}
           <div className="text-center">
             <Link
@@ -147,7 +163,7 @@ const Login: React.FC = () => {
             </div>
 
             <div>
-              <button
+              <motion.button
                 type="submit"
                 disabled={isLoading}
                 className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200 ${
@@ -155,6 +171,8 @@ const Login: React.FC = () => {
                     ? "opacity-70 cursor-not-allowed"
                     : "transform hover:scale-105"
                 }`}
+                whileHover={!isLoading ? { scale: 1.02 } : undefined}
+                whileTap={!isLoading ? { scale: 0.98 } : undefined}
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   {isLoading ? (
@@ -195,7 +213,7 @@ const Login: React.FC = () => {
                   )}
                 </span>
                 {isLoading ? "Connexion..." : "Se connecter"}
-              </button>
+              </motion.button>
             </div>
 
             <div className="text-center">
@@ -229,15 +247,23 @@ const Login: React.FC = () => {
 
           {/* Boutons sociaux */}
           <div className="flex flex-row justify-center gap-8 mt-4">
-            <button className="w-10 h-10 text-black bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 hover:scale-110 transition-all duration-250 hover:border-2 hover:border-teal-500 hover:text-teal-600">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 text-black bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-250 hover:border-2 hover:border-teal-500 hover:text-teal-600"
+            >
               <FaGoogle className="w-5 h-5" />
-            </button>
-            <button className="w-10 h-10 text-black bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 hover:scale-110 transition-all duration-250 hover:border-2 hover:border-teal-500 hover:text-teal-600">
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 text-black bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-250 hover:border-2 hover:border-teal-500 hover:text-teal-600"
+            >
               <Facebook className="w-5 h-5" />
-            </button>
+            </motion.button>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
