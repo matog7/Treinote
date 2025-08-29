@@ -2,7 +2,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "@/lib/api";
 import type { Training } from "@/interfaces/training";
-import type { RootState } from "@/store/configureStore";
 
 type Status = "idle" | "loading" | "succeeded" | "failed";
 

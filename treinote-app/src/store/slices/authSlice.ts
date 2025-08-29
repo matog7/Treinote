@@ -15,7 +15,6 @@ export const login = createAsyncThunk(
   "auth/login",
   async (payload: { email: string; password: string }) => {
     const { data } = await api.post("/auth/login", payload);
-    // api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
     return data;
   }
 );

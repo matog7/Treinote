@@ -1,6 +1,6 @@
 // src/store/index.ts
 import { persistStore } from "redux-persist";
-import store from "./configureStore"; // Assurez-vous que votre store est exporté par défaut depuis configureStore
+import store from "./configureStore";
 
 const persistor = persistStore(store);
 
