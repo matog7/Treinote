@@ -1,7 +1,6 @@
 import express from "express";
 const router = express.Router();
-
-const { pool } = require("../lib/db");
+const { query } = require("../lib/db");
 
 // Authentification simple: POST /api/auth/login
 router.post("/login", async (req, res) => {
@@ -13,7 +12,7 @@ router.post("/login", async (req, res) => {
 
   try {
     // Table "user" (email, password)
-    const result = await pool.query(
+    const result = await query(
       'SELECT * FROM "user" WHERE email = $1 LIMIT 1',
       [email]
     );

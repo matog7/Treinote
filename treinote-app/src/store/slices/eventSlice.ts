@@ -4,6 +4,7 @@ import { api } from "@/lib/api";
 
 const initialState = {
   events: [] as Event[],
+  stats: null as any,
   current: null as any,
   status: "idle" as "idle" | "loading" | "succeeded" | "failed",
 };
@@ -22,7 +23,13 @@ export const fetchEventById = createAsyncThunk(
     return data as any;
   }
 );
-
+export const fetchEventStatsUser = createAsyncThunk(
+  "events/fetchStatsUser",
+  async (id: string) => {
+    const { data } = await api.get(`/events/statByUser/${id}`);
+    return data as any;
+  }
+);
 const slice = createSlice({
   name: "events",
   initialState: initialState,
@@ -40,6 +47,15 @@ const slice = createSlice({
       })
       .addCase(fetchEventById.fulfilled, (s, a) => {
         s.current = a.payload;
+      })
+      .addCase(fetchEventStatsUser.fulfilled, (s, a) => {
+        s.stats = a.payload;
+      })
+      .addCase(fetchEventStatsUser.rejected, (s) => {
+        s.status = "failed";
+      })
+      .addCase(fetchEventStatsUser.pending, (s) => {
+        s.status = "loading";
       });
   },
 });

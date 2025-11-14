@@ -1,17 +1,17 @@
-// Chargement des variables d'environnement
-require("dotenv").config();
+import { Pool } from "pg";
+import dotenv from "dotenv";
 
-const { Pool } = require("pg");
+dotenv.config();
 
-// Préférence à DATABASE_URL si présente, sinon variables séparées
-const pool = process.env.DATABASE_URL
-  ? new Pool({ connectionString: process.env.DATABASE_URL })
-  : new Pool({
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
-      database: process.env.DB_BASE,
-      user: process.env.DB_USER,
-      password: process.env.DB_PWD,
-    });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
+  database: process.env.DB_BASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+});
 
-module.exports = { pool };
+export const query = (text: string, params?: unknown[]) =>
+  pool.query(text, params);
+export default pool;

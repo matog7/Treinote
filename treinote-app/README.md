@@ -1,12 +1,5 @@
-# React + Vite
+# Treinote
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Explication de la gamification 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Lorsqu'un utilisateur crée des évènements, celui gagne des points "d'XP" pour augmenter son niveau et gagner des goodies sportif selon son niveau. Il gagne des points aussi via les participants rejoignant son évènement et en participant également à ceux d'autres utilisateurs. Attention, on vous voit les petits malins 👀 : les points sont comptabilisés uniquement si il y a minimum 2 personnes dans l'évènement et si la capacité de celui/ci atteint 1/3 ou +.
