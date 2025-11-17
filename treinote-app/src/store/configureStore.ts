@@ -15,17 +15,20 @@ import {
 
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
-import { authReducer, eventsReducer, trainingReducer } from "@/store/slices";
+import { authReducer, eventsReducer, trainingReducer, preferencesReducer } from "@/store/slices";
 
 const persistConfig = {
   key: "treinote",
   storage,
+  // Exclure les préférences de la persistance car elles sont stockées en base
+  blacklist: ["preferences"],
 };
 export const resetAllSlices = createAction("resetAllSlices");
 const combinedReducers = combineReducers({
   auth: authReducer,
   events: eventsReducer,
   training: trainingReducer,
+  preferences: preferencesReducer,
 });
 
 const rootReducer = (

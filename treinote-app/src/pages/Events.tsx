@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   Plus,
   Calendar,
@@ -12,9 +12,13 @@ import EventSearch from "@/components/features/events/EventSearch";
 import EventCard from "@/components/features/events/EventCard";
 import EventDetailModal from "@/components/features/events/EventDetailModal";
 import { EventFilters, Event } from "@/interfaces/event";
-import tennisCourt from "@/assets/tennis-court.png";
+import AddEventModal from "@/components/modals/AddEventModal";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/configureStore";
+import { createEvent, fetchEvents } from "@/store/slices/eventSlice";
 
 const Events: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilters, setActiveFilters] = useState<EventFilters>({
     category: "",
@@ -24,171 +28,172 @@ const Events: React.FC = () => {
     dateRange: "",
     location: "",
   });
-
+  const [isAddEventModalOpen, setIsAddEventModalOpen] = useState(false);
+  const [events, setEvents] = useState<Event[]>([]);
   // Données factices pour la démonstration
-  const events: Event[] = [
-    {
-      id: "1",
-      title: "Tournoi de Tennis Local - Printemps 2025",
-      description:
-        "Compétition amicale ouverte à tous les niveaux. Venez défier d'autres joueurs dans une ambiance conviviale !",
-      date: "2025-04-15",
-      time: "09:00",
-      location: "Tennis Club de Lyon",
-      category: "Tennis",
-      maxParticipants: 32,
-      currentParticipants: 28,
-      price: 25,
-      difficulty: "intermediate",
-      organizer: {
-        name: "Tennis Club Lyon",
-        rating: 4.8,
-      },
-      tags: ["Tennis", "Compétition", "Printemps"],
-      status: "upcoming",
-    },
-    {
-      id: "2",
-      title: "Workshop Technique - Service et Volée",
-      description:
-        "Perfectionnez votre service et votre jeu de volée avec nos coachs expérimentés. Session intensive de 3 heures.",
-      date: "2025-03-22",
-      time: "14:00",
-      location: "Centre Sportif de Villeurbanne",
-      category: "Formation",
-      maxParticipants: 12,
-      currentParticipants: 8,
-      price: 45,
-      difficulty: "advanced",
-      organizer: {
-        name: "Coach Pro Tennis",
-        rating: 4.9,
-      },
-      tags: ["Technique", "Service", "Volée"],
-      status: "upcoming",
-    },
-    {
-      id: "3",
-      title: "Entraînement Collectif Débutants",
-      description:
-        "Session d'entraînement pour les joueurs débutants. Apprentissage des bases et exercices pratiques.",
-      date: "2025-03-20",
-      time: "18:00",
-      location: "Complexe Sportif de Bron",
-      category: "Entraînement",
-      maxParticipants: 16,
-      currentParticipants: 12,
-      price: 0,
-      difficulty: "beginner",
-      organizer: {
-        name: "Association Tennis Bron",
-        rating: 4.5,
-      },
-      tags: ["Débutant", "Entraînement", "Gratuit"],
-      status: "upcoming",
-    },
-    {
-      id: "4",
-      title: "Match Exhibition - Champions vs Amateurs",
-      description:
-        "Spectacle unique avec des matchs entre professionnels et amateurs. Animation et démonstrations.",
-      date: "2025-03-18",
-      time: "16:00",
-      location: "Stade de Gerland",
-      category: "Compétition",
-      maxParticipants: 200,
-      currentParticipants: 180,
-      price: 15,
-      difficulty: "intermediate",
-      organizer: {
-        name: "Fédération Tennis Rhône",
-        rating: 4.7,
-      },
-      tags: ["Exhibition", "Professionnels", "Spectacle"],
-      status: "upcoming",
-    },
-    {
-      id: "5",
-      title: "Championnat Interclubs - Phase Finale",
-      description:
-        "Finale du championnat interclubs de la région. Les meilleures équipes s'affrontent pour le titre.",
-      date: "2025-03-10",
-      time: "10:00",
-      location: "Tennis Club de Caluire",
-      category: "Tournoi",
-      maxParticipants: 64,
-      currentParticipants: 64,
-      price: 0,
-      difficulty: "advanced",
-      organizer: {
-        name: "Ligue Tennis Auvergne-Rhône-Alpes",
-        rating: 4.9,
-      },
-      tags: ["Championnat", "Finale", "Interclubs"],
-      status: "completed",
-      image: tennisCourt,
-    },
-    {
-      id: "6",
-      title: "Soirée Sociale - Dîner des Joueurs",
-      description:
-        "Soirée conviviale pour tous les membres du club. Dîner, échanges et networking dans une ambiance détendue.",
-      date: "2025-03-25",
-      time: "19:30",
-      location: "Restaurant du Club",
-      category: "Social",
-      maxParticipants: 50,
-      currentParticipants: 35,
-      price: 35,
-      difficulty: "beginner",
-      organizer: {
-        name: "Tennis Club Lyon",
-        rating: 4.6,
-      },
-      tags: ["Social", "Dîner", "Networking"],
-      status: "upcoming",
-    },
-    {
-      id: "7",
-      title: "Stage Vacances - Pâques 2025",
-      description:
-        "Stage intensif pendant les vacances de Pâques. Progression rapide garantie avec nos méthodes éprouvées.",
-      date: "2025-04-07",
-      time: "09:00",
-      location: "Complexe Sportif de Tassin",
-      category: "Formation",
-      maxParticipants: 20,
-      currentParticipants: 15,
-      price: 120,
-      difficulty: "intermediate",
-      organizer: {
-        name: "Académie Tennis Pro",
-        rating: 4.8,
-      },
-      tags: ["Stage", "Vacances", "Intensif"],
-      status: "upcoming",
-    },
-    {
-      id: "8",
-      title: "Open de Lyon - Qualification",
-      description:
-        "Tournoi de qualification pour l'Open de Lyon. Une chance de se qualifier pour la compétition principale.",
-      date: "2025-03-05",
-      time: "08:00",
-      location: "Tennis Club de Lyon",
-      category: "Tournoi",
-      maxParticipants: 48,
-      currentParticipants: 48,
-      price: 30,
-      difficulty: "advanced",
-      organizer: {
-        name: "Open de Lyon",
-        rating: 4.9,
-      },
-      tags: ["Qualification", "Open", "Compétition"],
-      status: "completed",
-    },
-  ];
+  // const events: Event[] = [
+  //   {
+  //     id: "1",
+  //     title: "Tournoi de Tennis Local - Printemps 2025",
+  //     description:
+  //       "Compétition amicale ouverte à tous les niveaux. Venez défier d'autres joueurs dans une ambiance conviviale !",
+  //     date: "2025-04-15",
+  //     time: "09:00",
+  //     location: "Tennis Club de Lyon",
+  //     category: "Tennis",
+  //     maxParticipants: 32,
+  //     currentParticipants: 28,
+  //     price: 25,
+  //     difficulty: "intermediate",
+  //     organizer: {
+  //       name: "Tennis Club Lyon",
+  //       rating: 4.8,
+  //     },
+  //     tags: ["Tennis", "Compétition", "Printemps"],
+  //     status: "upcoming",
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "Workshop Technique - Service et Volée",
+  //     description:
+  //       "Perfectionnez votre service et votre jeu de volée avec nos coachs expérimentés. Session intensive de 3 heures.",
+  //     date: "2025-03-22",
+  //     time: "14:00",
+  //     location: "Centre Sportif de Villeurbanne",
+  //     category: "Formation",
+  //     maxParticipants: 12,
+  //     currentParticipants: 8,
+  //     price: 45,
+  //     difficulty: "advanced",
+  //     organizer: {
+  //       name: "Coach Pro Tennis",
+  //       rating: 4.9,
+  //     },
+  //     tags: ["Technique", "Service", "Volée"],
+  //     status: "upcoming",
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "Entraînement Collectif Débutants",
+  //     description:
+  //       "Session d'entraînement pour les joueurs débutants. Apprentissage des bases et exercices pratiques.",
+  //     date: "2025-03-20",
+  //     time: "18:00",
+  //     location: "Complexe Sportif de Bron",
+  //     category: "Entraînement",
+  //     maxParticipants: 16,
+  //     currentParticipants: 12,
+  //     price: 0,
+  //     difficulty: "beginner",
+  //     organizer: {
+  //       name: "Association Tennis Bron",
+  //       rating: 4.5,
+  //     },
+  //     tags: ["Débutant", "Entraînement", "Gratuit"],
+  //     status: "upcoming",
+  //   },
+  //   {
+  //     id: "4",
+  //     title: "Match Exhibition - Champions vs Amateurs",
+  //     description:
+  //       "Spectacle unique avec des matchs entre professionnels et amateurs. Animation et démonstrations.",
+  //     date: "2025-03-18",
+  //     time: "16:00",
+  //     location: "Stade de Gerland",
+  //     category: "Compétition",
+  //     maxParticipants: 200,
+  //     currentParticipants: 180,
+  //     price: 15,
+  //     difficulty: "intermediate",
+  //     organizer: {
+  //       name: "Fédération Tennis Rhône",
+  //       rating: 4.7,
+  //     },
+  //     tags: ["Exhibition", "Professionnels", "Spectacle"],
+  //     status: "upcoming",
+  //   },
+  //   {
+  //     id: "5",
+  //     title: "Championnat Interclubs - Phase Finale",
+  //     description:
+  //       "Finale du championnat interclubs de la région. Les meilleures équipes s'affrontent pour le titre.",
+  //     date: "2025-03-10",
+  //     time: "10:00",
+  //     location: "Tennis Club de Caluire",
+  //     category: "Tournoi",
+  //     maxParticipants: 64,
+  //     currentParticipants: 64,
+  //     price: 0,
+  //     difficulty: "advanced",
+  //     organizer: {
+  //       name: "Ligue Tennis Auvergne-Rhône-Alpes",
+  //       rating: 4.9,
+  //     },
+  //     tags: ["Championnat", "Finale", "Interclubs"],
+  //     status: "completed",
+  //     image: tennisCourt,
+  //   },
+  //   {
+  //     id: "6",
+  //     title: "Soirée Sociale - Dîner des Joueurs",
+  //     description:
+  //       "Soirée conviviale pour tous les membres du club. Dîner, échanges et networking dans une ambiance détendue.",
+  //     date: "2025-03-25",
+  //     time: "19:30",
+  //     location: "Restaurant du Club",
+  //     category: "Social",
+  //     maxParticipants: 50,
+  //     currentParticipants: 35,
+  //     price: 35,
+  //     difficulty: "beginner",
+  //     organizer: {
+  //       name: "Tennis Club Lyon",
+  //       rating: 4.6,
+  //     },
+  //     tags: ["Social", "Dîner", "Networking"],
+  //     status: "upcoming",
+  //   },
+  //   {
+  //     id: "7",
+  //     title: "Stage Vacances - Pâques 2025",
+  //     description:
+  //       "Stage intensif pendant les vacances de Pâques. Progression rapide garantie avec nos méthodes éprouvées.",
+  //     date: "2025-04-07",
+  //     time: "09:00",
+  //     location: "Complexe Sportif de Tassin",
+  //     category: "Formation",
+  //     maxParticipants: 20,
+  //     currentParticipants: 15,
+  //     price: 120,
+  //     difficulty: "intermediate",
+  //     organizer: {
+  //       name: "Académie Tennis Pro",
+  //       rating: 4.8,
+  //     },
+  //     tags: ["Stage", "Vacances", "Intensif"],
+  //     status: "upcoming",
+  //   },
+  //   {
+  //     id: "8",
+  //     title: "Open de Lyon - Qualification",
+  //     description:
+  //       "Tournoi de qualification pour l'Open de Lyon. Une chance de se qualifier pour la compétition principale.",
+  //     date: "2025-03-05",
+  //     time: "08:00",
+  //     location: "Tennis Club de Lyon",
+  //     category: "Tournoi",
+  //     maxParticipants: 48,
+  //     currentParticipants: 48,
+  //     price: 30,
+  //     difficulty: "advanced",
+  //     organizer: {
+  //       name: "Open de Lyon",
+  //       rating: 4.9,
+  //     },
+  //     tags: ["Qualification", "Open", "Compétition"],
+  //     status: "completed",
+  //   },
+  // ];
 
   // Filtrage des événements
   const filteredEvents = useMemo(() => {
@@ -254,6 +259,33 @@ const Events: React.FC = () => {
     });
   }, [events, searchQuery, activeFilters]);
 
+  const fetchEventsAction = async () => {
+    return dispatch(fetchEvents())
+      .unwrap()
+      .then((data: Event[]) => {
+        setEvents(data);
+      })
+      .catch((error: any) => {
+        console.error("Error fetching events:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchEventsAction();
+  }, []);
+
+  const handleAddEvent = (event: Event) => {
+    dispatch(createEvent(event))
+      .unwrap()
+      .then(() => {
+        setIsAddEventModalOpen(false);
+        fetchEventsAction();
+      })
+      .catch((error) => {
+        console.error("Error adding event:", error);
+      });
+  };
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
   };
@@ -284,7 +316,7 @@ const Events: React.FC = () => {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
 
   const handleViewDetails = (eventId: string) => {
-    const found = events.find((e) => e.id === eventId) || null;
+    const found = events.find((e) => e.event_id === eventId) || null;
     setSelectedEvent(found);
     setIsDetailOpen(!!found);
   };
@@ -301,6 +333,13 @@ const Events: React.FC = () => {
 
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 mt-16">
+      {isAddEventModalOpen && (
+        <AddEventModal
+          isModalOpen={isAddEventModalOpen}
+          setIsModalOpen={setIsAddEventModalOpen}
+          onAddEvent={handleAddEvent}
+        />
+      )}
       <div className="max-w-7xl mx-auto">
         {/* En-tête de la page */}
         <div className="text-center mb-8">
@@ -343,7 +382,12 @@ const Events: React.FC = () => {
 
         {/* Bouton créer un événement */}
         <div className="text-center mb-8">
-          <button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto">
+          <button
+            onClick={() => {
+              setIsAddEventModalOpen(true);
+            }}
+            className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto"
+          >
             <Plus className="w-5 h-5" />
             <span>Créer un événement</span>
           </button>
@@ -388,7 +432,7 @@ const Events: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredEvents.map((event) => (
               <EventCard
-                key={event.id}
+                key={event.event_id}
                 event={event}
                 onJoin={handleJoinEvent}
                 onViewDetails={handleViewDetails}

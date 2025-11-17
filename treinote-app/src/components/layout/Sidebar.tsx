@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   };
 
   const menuItems = [
-    { path: "/", label: "Accueil", icon: Home },
+    { path: user?.id ? "/my-training" : "/", label: "Accueil", icon: Home },
     { path: "/training", label: "Entrainement", icon: Target },
     { path: "/community", label: "Communauté", icon: Users },
     { path: "/events", label: "Événements", icon: Calendar },

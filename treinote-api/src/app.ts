@@ -9,6 +9,7 @@ const port = 8888;
 const loginRoutes = require("./routes/LoginRoutes");
 const trainingRoutes = require("./routes/TrainingRoutes");
 const eventRoutes = require("./routes/EventRoutes");
+const preferencesRoutes = require("./routes/PreferencesRoutes");
 
 // Middleware pour parser le JSON
 app.use(express.json());
@@ -32,6 +33,7 @@ app.use(
 app.use("/api/auth", loginRoutes);
 app.use("/api/training", trainingRoutes);
 app.use("/api/events", eventRoutes);
+app.use("/api/preferences", preferencesRoutes);
 
 // Route de test
 app.get("/", (req: any, res: { send: (arg0: string) => void }) => {

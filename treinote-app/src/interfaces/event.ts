@@ -1,13 +1,15 @@
 export interface Event {
   id: string;
+  event_id?: string;
+  organizer_id: string;
   title: string;
   description: string;
   date: string;
   time: string;
   location: string;
   category: string;
-  maxParticipants: number;
-  currentParticipants: number;
+  maxparticipants: number;
+  currentparticipants: number;
   price: number;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   organizer: {

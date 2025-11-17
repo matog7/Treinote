@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Routes,
   Route,
@@ -23,8 +23,9 @@ import {
 
 import "./App.css";
 import MyTrainingDashboard from "./components/features/training/MyTrainingDashboard";
-import { useSelector } from "react-redux";
-import { RootState } from "./store/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "./store/configureStore";
+import { fetchPreferences } from "./store/slices/preferencesSlice";
 import AuthContextProvider from "./contexts/authContext";
 
 type Props = {
@@ -44,11 +45,27 @@ const ProtectedRoute: React.FC<Props> = ({ auth, redirectPath = "/login" }) => {
   return <Outlet />; // Afin de rendre la route de l'enfant, s'il y en a 1
 };
 
+// Composant pour charger les préférences au démarrage
+const PreferencesLoader: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((s: RootState) => s.auth.user);
+  const preferencesStatus = useSelector((s: RootState) => s.preferences.status);
+
+  useEffect(() => {
+    if (user?.id && preferencesStatus === "idle") {
+      dispatch(fetchPreferences(user.id));
+    }
+  }, [dispatch, user?.id, preferencesStatus]);
+
+  return null;
+};
+
 function App() {
   const auth = useSelector((s: RootState) => s.auth);
   return (
     <BrowserRouter>
       <AuthContextProvider>
+        <PreferencesLoader />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

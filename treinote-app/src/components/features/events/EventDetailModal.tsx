@@ -97,7 +97,7 @@ const EventDetailModal: React.FC<EventDetailModalProps> = ({
             <div className="flex items-center text-sm text-gray-700">
               <Users className="w-4 h-4 mr-2 text-teal-500" />
               <span>
-                {event.currentParticipants}/{event.maxParticipants} participants
+                {event.currentparticipants}/{event.maxparticipants} participants
               </span>
             </div>
           </div>

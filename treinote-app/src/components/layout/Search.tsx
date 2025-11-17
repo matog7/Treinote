@@ -35,6 +35,30 @@ const DATA: SearchItem[] = [
     path: "/my-training",
     category: "page",
   },
+  {
+    id: "my-events",
+    title: "Mes événements",
+    path: "/my-events",
+    category: "page",
+  },
+  {
+    id: "my-communities",
+    title: "Mes communautés",
+    path: "/my-communities",
+    category: "page",
+  },
+  {
+    id: "my-profile",
+    title: "Mon profil",
+    path: "/profile",
+    category: "page",
+  },
+  {
+    id: "settings",
+    title: "Mes paramètres",
+    path: "/settings",
+    category: "page",
+  },
   // Événements (exemples)
   {
     id: "event-larmor",

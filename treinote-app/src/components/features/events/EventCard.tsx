@@ -60,16 +60,16 @@ const EventCard: React.FC<EventCardProps> = ({
     }
   };
 
-  const isFull = event.currentParticipants >= event.maxParticipants;
+  const isFull = event.currentparticipants >= event.maxparticipants;
   const isCompleted = event.status === "completed";
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden">
+    <div id={`event-card-${event.id}`} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden">
       {/* Image de l'événement */}
       <div className="relative h-48 bg-gradient-to-br from-teal-400 to-teal-600">
         {event.image ? (
           <img
-            src={event.image}
+            src={`src/assets/${event.image}`}
             alt={event.title}
             className="w-full h-full object-cover"
           />
@@ -137,7 +137,7 @@ const EventCard: React.FC<EventCardProps> = ({
           <div className="flex items-center text-sm text-gray-600">
             <Users className="w-4 h-4 mr-2 text-teal-500" />
             <span>
-              {event.currentParticipants}/{event.maxParticipants} participants
+              {event.currentparticipants}/{event.maxparticipants} participants
             </span>
           </div>
         </div>
@@ -199,7 +199,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <div className="flex space-x-3">
           <button
             onClick={() => {
-              onViewDetails?.(event.id);
+              onViewDetails?.(event.event_id || "");
             }}
             className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200"
           >
@@ -208,7 +208,7 @@ const EventCard: React.FC<EventCardProps> = ({
 
           {!isCompleted && (
             <button
-              onClick={() => onJoin?.(event.id)}
+              onClick={() => onJoin?.(event.event_id || "")}
               disabled={isFull}
               className={`flex-1 font-medium py-2 px-4 rounded-lg transition-all duration-200 ${
                 isFull
@@ -227,7 +227,7 @@ const EventCard: React.FC<EventCardProps> = ({
             <div className="flex justify-between text-xs text-gray-600 mb-1">
               <span>Places disponibles</span>
               <span>
-                {event.maxParticipants - event.currentParticipants} restantes
+                {event.maxparticipants - event.currentparticipants} restantes
               </span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
@@ -235,7 +235,7 @@ const EventCard: React.FC<EventCardProps> = ({
                 className="bg-gradient-to-r from-teal-500 to-teal-600 h-2 rounded-full transition-all duration-300"
                 style={{
                   width: `${
-                    (event.currentParticipants / event.maxParticipants) * 100
+                    (event.currentparticipants / event.maxparticipants) * 100
                   }%`,
                 }}
               ></div>
